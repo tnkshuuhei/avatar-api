@@ -2,3 +2,14 @@
 __pycache__/
 venv/
 memo.md
+
+# Generated data
+data/vector_db/
+data/vector_db/*
+
+# Keep the directory structure
+!data/vector_db/.gitkeep
+
+# PDF files(optional)
+# data/pdfs/*.pdf
+# !data/pdfs/.gitkeep
