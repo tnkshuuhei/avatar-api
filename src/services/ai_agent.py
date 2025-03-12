@@ -8,6 +8,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 
 from src.config import settings
+from src.prompts import QA_PROMPT
 
 
 class AIAgent:
@@ -48,6 +49,7 @@ class AIAgent:
             retriever=self.vector_db.as_retriever(search_kwargs={"k": 4}),
             memory=self.memory,
             return_source_documents=True,
+            combine_docs_chain_kwargs={"prompt": QA_PROMPT},
         )
 
     def _create_vector_db_from_pdfs(self):
@@ -67,7 +69,7 @@ class AIAgent:
 
         # Split documents into chunks
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000, chunk_overlap=200
+            chunk_size=1000, chunk_overlap=200, separators=["\n\n", "\n", " ", ""]
         )
         chunks = text_splitter.split_documents(documents)
 
@@ -107,7 +109,7 @@ class AIAgent:
             if hasattr(doc, "metadata") and "source" in doc.metadata:
                 sources.append(doc.metadata["source"])
 
-        return answer, list(set(sources))  # Deduplicate sources
+        return answer, list(set(sources))
 
     def reset_conversation(self):
         """Reset the conversation history."""
