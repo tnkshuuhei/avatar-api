@@ -1,6 +1,6 @@
 ```
 ./
-├── app/
+├── src/
 │   ├── __init__.py
 │   ├── main.py           # FastAPI application
 │   ├── config.py         # Configuration settings
