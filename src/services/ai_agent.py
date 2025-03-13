@@ -1,5 +1,5 @@
 import os
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Optional
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
@@ -10,17 +10,29 @@ from langchain_anthropic import ChatAnthropic
 
 from src.config import settings
 from src.prompts import QA_PROMPT
+from src.services.personality_manager import (
+    get_personality_prompt,
+    get_default_prompt,
+)
 
 
 class AIAgent:
-    def __init__(self):
+    def __init__(self, personality_id: Optional[str] = None):
+        self.personality_id = personality_id
         self.embeddings = OpenAIEmbeddings(openai_api_key=settings.OPENAI_API_KEY)
+
         self.llm = ChatAnthropic(
             temperature=0.2,
             model=settings.ANTHROPIC_MODEL_NAME,
             anthropic_api_key=settings.ANTHROPIC_API_KEY,
             max_tokens=140,
         )
+
+        if personality_id:
+            self.qa_prompt = get_personality_prompt(personality_id)
+        else:
+            self.qa_prompt = get_default_prompt()
+
         # Initialize memory
         self.memory = ConversationBufferMemory(
             memory_key="chat_history", return_messages=True, output_key="answer"
@@ -51,7 +63,7 @@ class AIAgent:
             retriever=self.vector_db.as_retriever(search_kwargs={"k": 4}),
             memory=self.memory,
             return_source_documents=True,
-            combine_docs_chain_kwargs={"prompt": QA_PROMPT},
+            combine_docs_chain_kwargs={"prompt": self.qa_prompt},
         )
 
     def _create_vector_db_from_pdfs(self):
@@ -116,3 +128,7 @@ class AIAgent:
     def reset_conversation(self):
         """Reset the conversation history."""
         self.memory.clear()
+
+    def get_personality_info(self) -> Dict[str, str]:
+        """Get the personality ID of the AI agent."""
+        return self.personality_id
