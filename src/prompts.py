@@ -51,7 +51,7 @@ If the user asks in English, respond in English. If in Japanese, respond in Japa
 
 <question>{question}</question>
 """,
-    input_variables=["context", "question"]
+    input_variables=["context", "question"],
 )
 # This prompt includes chat history
 QA_PROMPT_WITH_HISTORY = PromptTemplate(
