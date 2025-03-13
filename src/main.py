@@ -1,10 +1,15 @@
+"""
+Main entry point for the API application.
+"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.api.routes import router
+
+from src.api.routes import router as general_router
+from src.api.personality_routes import router as personality_router
 
 app = FastAPI(
     title="AI Avatar API",
-    description="API for handling questions for an AI agent trained on PDFs",
+    description="API for interacting with AI avatars with different personalities",
     version="1.0.0",
 )
 
@@ -18,7 +23,8 @@ app.add_middleware(
 )
 
 # Include API routes
-app.include_router(router)
+app.include_router(general_router)
+app.include_router(personality_router)
 
 if __name__ == "__main__":
     import uvicorn
