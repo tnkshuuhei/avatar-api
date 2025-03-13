@@ -6,6 +6,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
+from langchain_anthropic import ChatAnthropic
 
 from src.config import settings
 from src.prompts import QA_PROMPT
@@ -14,10 +15,11 @@ from src.prompts import QA_PROMPT
 class AIAgent:
     def __init__(self):
         self.embeddings = OpenAIEmbeddings(openai_api_key=settings.OPENAI_API_KEY)
-        self.llm = ChatOpenAI(
+        self.llm = ChatAnthropic(
             temperature=0.2,
-            model_name=settings.MODEL_NAME,
-            openai_api_key=settings.OPENAI_API_KEY,
+            model=settings.ANTHROPIC_MODEL_NAME,
+            anthropic_api_key=settings.ANTHROPIC_API_KEY,
+            max_tokens=140,
         )
         # Initialize memory
         self.memory = ConversationBufferMemory(

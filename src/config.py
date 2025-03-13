@@ -19,7 +19,12 @@ class Settings(BaseSettings):
     PDF_DIR: str = os.getenv("PDF_DIR", "./data/pdfs")
 
     # Model settings
-    MODEL_NAME: str = os.getenv("MODEL_NAME", "gpt-3.5-turbo")
+    MODEL_NAME: str = os.getenv("MODEL_NAME", "gpt-4")
+    
+    ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "api-key")
+    
+    ANTHROPIC_MODEL_NAME: str = os.getenv("ANTHROPIC_MODEL_NAME", "claude-3-haiku-20240307")
+
 
     class Config:
         env_file = ".env"

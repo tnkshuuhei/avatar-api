@@ -6,6 +6,9 @@ python-multipart
 langchain
 langchain-openai
 langchain_community
+langchain-anthropic 
+anthropic
+
 # # LangChain and OpenAI
 # langchain
 # langchain-openai
