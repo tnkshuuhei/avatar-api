@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "api-key")
 
     ANTHROPIC_MODEL_NAME: str = os.getenv(
-        "ANTHROPIC_MODEL_NAME", "claude-3-haiku-20240307"
+        "ANTHROPIC_MODEL_NAME", "claude-3-7-sonnet-20250219"
     )
 
     class Config:
