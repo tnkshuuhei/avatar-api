@@ -8,7 +8,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain_anthropic import ChatAnthropic
 from langchain.schema.document import Document
-from langchain.chains.question_answering import load_qa_chain  
+from langchain.chains.question_answering import load_qa_chain
 
 from src.config import settings
 from src.services.personality_manager import (
@@ -95,9 +95,7 @@ class AIAgent:
             print("WARNING: Using fallback mode without vector database")
 
             qa_chain = load_qa_chain(
-                llm=self.llm,
-                chain_type="stuff",
-                prompt=self.qa_prompt
+                llm=self.llm, chain_type="stuff", prompt=self.qa_prompt
             )
             # Create a simple QA chain without retrieval
             self.conversation_chain = qa_chain
@@ -195,8 +193,12 @@ class AIAgent:
             if self.is_fallback_mode:
                 # For fallback mode without vector DB
                 empty_docs = [Document(page_content="", metadata={"source": "empty"})]
-                result = self.conversation_chain({"input_documents": empty_docs, "question": question})
-                answer = result.get("output_text", "I'm sorry, I couldn't find an answer.")
+                result = self.conversation_chain(
+                    {"input_documents": empty_docs, "question": question}
+                )
+                answer = result.get(
+                    "output_text", "I'm sorry, I couldn't find an answer."
+                )
                 sources = ["No knowledge base available"]
             else:
                 # Normal mode with vector DB
