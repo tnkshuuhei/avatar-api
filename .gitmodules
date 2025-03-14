@@ -1,0 +1,3 @@
+[submodule "lib/deepgov-modelspec"]
+	path = lib/deepgov-modelspec
+	url = https://github.com/evalscience/deepgov-modelspec.git
