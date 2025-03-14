@@ -3,7 +3,16 @@
 ```shell
 cp .env.example .env
 pip install -r requirements.txt
+```
+
+```shell
+# start dev server
 uvicorn src.main:app --reload
+
+or
+
+docker build -t avatar-api .
+docker run -p 8000:80 avatar-api
 ```
 
 Docs `http://localhost:8000/docs`
@@ -13,6 +22,7 @@ curl -X POST http://localhost:8000/personalities/community/ask \  -H "Content-Ty
 ```
 
 ## Structure
+
 ```
 .
 ├── README.md
