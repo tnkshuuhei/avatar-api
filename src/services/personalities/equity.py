@@ -3,6 +3,8 @@ EquityMax personality: Specialist in equity and fairness considerations.
 """
 
 from src.services.personalities.base import BasePersonality
+
+
 class EquityMaxPersonality(BasePersonality):
     """EquityMax personality class."""
 
