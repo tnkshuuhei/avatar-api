@@ -8,7 +8,7 @@ from src.services.personalities.base import BasePersonality
 class SustainFocusPersonality(BasePersonality):
     """SustainFocus personality class."""
 
-    id = "sustain-focus"
+    id = "sustainability"
     name = "SustainFocus"
     tags = [
         "Sustainability Metrics",

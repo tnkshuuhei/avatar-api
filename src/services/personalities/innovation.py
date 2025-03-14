@@ -8,7 +8,7 @@ from src.services.personalities.base import BasePersonality
 class InnovationEnginePersonality(BasePersonality):
     """InnovationEngine personality class."""
 
-    id = "innovation-engine"
+    id = "innovation"
     name = "InnovationEngine"
     tags = [
         "Breakthrough Solution Design",

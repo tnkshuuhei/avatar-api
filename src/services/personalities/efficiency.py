@@ -8,7 +8,7 @@ from src.services.personalities.base import BasePersonality
 class EfficientAllocPersonality(BasePersonality):
     """EfficientAlloc personality class."""
 
-    id = "efficient-alloc"
+    id = "efficiency"
     name = "EfficientAlloc"
     tags = [
         "ROI Calculator",

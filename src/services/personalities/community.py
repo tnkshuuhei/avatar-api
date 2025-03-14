@@ -8,7 +8,7 @@ from src.services.personalities.base import BasePersonality
 class CommunityCentricPersonality(BasePersonality):
     """CommunityCentric personality class."""
 
-    id = "community-centric"
+    id = "community"
     name = "CommunityCentric"
     tags = [
         "Community Engagement Frameworks",

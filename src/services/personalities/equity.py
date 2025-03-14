@@ -8,7 +8,7 @@ from src.services.personalities.base import BasePersonality
 class EquityMaxPersonality(BasePersonality):
     """EquityMax personality class."""
 
-    id = "equity-max"
+    id = "equity"
     name = "EquityMax"
     tags = [
         "Population Impact Analysis",
