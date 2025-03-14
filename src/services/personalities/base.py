@@ -6,7 +6,6 @@ import os
 from typing import List, Dict, Any, Optional
 from langchain.prompts import PromptTemplate
 from src.config import PROJECT_ROOT
-from src.prompts import VOICE_QA_PROMPT
 
 
 class BasePersonality:
