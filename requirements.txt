@@ -8,20 +8,6 @@ langchain-openai
 langchain_community
 langchain-anthropic 
 anthropic
-
-# # LangChain and OpenAI
-# langchain
-# langchain-openai
-# langchain-community
-# openai
-
-# Vector Database
 chromadb
-
-# # PDF Processing
 pypdf
 pydantic_settings
-
-# # Testing
-# pytest
-# httpx
