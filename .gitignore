@@ -13,3 +13,4 @@ data/vector_db/*
 # PDF files(optional)
 # data/pdfs/*.pdf
 !data/pdfs/.gitkeep
+.vercel
